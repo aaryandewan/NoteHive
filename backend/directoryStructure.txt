@@ -1,0 +1,15 @@
+/myapp
+  /backend
+    /config
+      db.js
+      auth.js
+    /models
+      User.js
+      Note.js
+    /routes
+      users.js
+      notes.js
+    /middleware
+      auth.js
+    server.js
+  /frontend
