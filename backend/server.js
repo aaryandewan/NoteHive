@@ -17,9 +17,12 @@ app.use(
 app.use(bodyParser.json());
 
 // DB Config
-const db = require('./config/keys').mongoURI;
+const db = require('./config/keys').mongoURI.toString();
+// const db = "mongodb+srv://aaryand:aaryand@cluster0.ldq41v4.mongodb.net/?retryWrites=true&w=majority";
+
 
 // Connect to MongoDB
+console.log(db);
 mongoose
   .connect(
     db,
@@ -29,14 +32,14 @@ mongoose
   .catch(err => console.log(err));
 
 // Passport middleware
-app.use(passport.initialize());
+// app.use(passport.initialize());
 
-// // Passport config
-require('./config/passport')(passport);
+// // // Passport config
+// require('./config/passport')(passport);
 
-// // Routes
-app.use('/api/users', users);
-app.use('/api/notes', notes);
+// // // Routes
+// app.use('/api/users', users);
+// app.use('/api/notes', notes);
 
 const port = process.env.PORT || 5000;
 
