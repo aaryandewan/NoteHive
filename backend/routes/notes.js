@@ -11,6 +11,7 @@ const auth = require('../middleware/auth.js');
 // @access Private
 router.post('/create', auth, (req, res) => {
   // The auth middleware verifies the user's token and adds their user ID to the request object
+  console.log("In notes.js, user = ", req.user);
   const userId = req.user.id;
 
   // Now you can use this user ID when creating the note

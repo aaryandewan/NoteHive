@@ -47,7 +47,8 @@ router.post("/register", (req, res) => {
                 (err, token) => {
                   res.json({
                     success: true,
-                    token: "Bearer " + token,
+                    token: token,
+                    jaja: "ends"
                   });
                 }
               );

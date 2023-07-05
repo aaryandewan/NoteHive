@@ -5,7 +5,13 @@ const {secretOrKey} = keys
 
 module.exports = function(req, res, next) {
   // Get token from header
-  const token = req.header('x-auth-token');
+  console.log("In auth js");
+  // console.log("req", req);
+  console.log("req.aaryan", req.headers['x-auth-token']);
+  console.log("qqq");
+  const token = req.headers['x-auth-token'];
+  const decoded_token = jwt.decode(token, { complete: true });
+  console.log("The entire decoded token is:", decoded_token);
 
   // Check if no token
   if (!token) {
@@ -15,8 +21,8 @@ module.exports = function(req, res, next) {
   // Verify token
   try {
     const decoded = jwt.verify(token, secretOrKey);
-
-    req.user = decoded.user;
+    console.log("in auth, decoded = ", decoded);
+    req.user = decoded;
     next();
   } catch (err) {
     res.status(401).json({ msg: 'Token is not valid' });
