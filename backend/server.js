@@ -18,8 +18,6 @@ app.use(bodyParser.json());
 
 // DB Config
 const db = require('./config/keys').mongoURI.toString();
-// const db = "mongodb+srv://aaryand:aaryand@cluster0.ldq41v4.mongodb.net/?retryWrites=true&w=majority";
-
 
 // Connect to MongoDB
 console.log(db);
