@@ -11,6 +11,8 @@ const User = require("../models/User");
 
 router.post("/register", (req, res) => {
   // Find user by email
+  console.log("User registeration request!");
+  // console.log(req);
   User.findOne({ email: req.body.email }).then((user) => {
     // If user exists, send a 400 response
     if (user) {

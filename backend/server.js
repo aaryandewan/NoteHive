@@ -1,20 +1,27 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const passport = require('passport');
 
 const users = require('./routes/users');
 const notes = require('./routes/notes');
 
 const app = express();
+app.use(express.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(express.json());
+
+app.use('/api/users', users);
+app.use('/api/notes', notes);
 
 // Bodyparser middleware
-app.use(
-  bodyParser.urlencoded({
-    extended: false
-  })
-);
-app.use(bodyParser.json());
+// app.use(
+//   bodyParser.urlencoded({
+//     extended: false
+//   })
+// );
+// app.use(bodyParser.json());
 
 // DB Config
 const db = require('./config/keys').mongoURI.toString();
@@ -30,14 +37,13 @@ mongoose
   .catch(err => console.log(err));
 
 // Passport middleware
-// app.use(passport.initialize());
+app.use(passport.initialize());
 
 // // // Passport config
-// require('./config/passport')(passport);
+require('./config/passport')(passport);
 
 // // // Routes
-// app.use('/api/users', users);
-// app.use('/api/notes', notes);
+
 
 const port = process.env.PORT || 5000;
 
